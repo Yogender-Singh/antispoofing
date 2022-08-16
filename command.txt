@@ -1,0 +1,6 @@
+ docker run --gpus all -p 8888:8888 -it -v %cd%:/workspace antispoofing
+
+
+ docker run -p 8500:8500 --mount type=bind,source=%cd%/mnist,target=/models/mnist -e MODEL_NAME=mnist -t tensorflow/serving &
+
+ python tensorflow_serving/example/mnist_client.py --num_tests=1000 --server=127.0.0.1:8500
